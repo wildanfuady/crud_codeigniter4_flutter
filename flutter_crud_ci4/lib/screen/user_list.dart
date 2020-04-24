@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud_ci4/model/user.dart';
+import 'package:flutter_crud_ci4/screen/user_create.dart';
 import 'package:flutter_crud_ci4/service/user_service.dart';
 import 'package:flutter_crud_ci4/util/capitalize.dart';
 
@@ -38,6 +39,18 @@ class _HomeState extends State<Home> {
             );
           }
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (BuildContext context) => FormUser()) 
+          );
+        }
       ),
     );
   }

@@ -16,4 +16,9 @@ class User_model extends Model {
             return $this->getWhere(['id' => $id])->getRowArray();
         }  
     }
+
+    public function createUser($data)
+    {
+        return $this->db->table($this->table)->insert($data); 
+    }
 } 

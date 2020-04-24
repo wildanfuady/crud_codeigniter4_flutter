@@ -27,8 +27,36 @@ class User extends ResourceController
                 'grade' => $row->grade,
                 'phone' => $row->phone 
             ];
-            return $this->respond($user, 200);
+            
         
         }	
+        return $this->respond($user, 200);
+    }
+
+    public function create()
+    {
+        $fullname   = $this->request->getPost('fullname');
+        $grade      = $this->request->getPost('grade');
+        $gender     = $this->request->getPost('gender');
+        $phone      = $this->request->getPost('phone');
+        
+        $data = [
+            'fullname' => $fullname,
+            'grade' => $grade,
+            'gender' => $gender,
+            'phone' => $phone
+        ];
+        
+        $simpan = $this->model->createUser($data);
+        
+        if($simpan){
+            $msg = ['message' => 'Created user successfully'];
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'data' => $msg,
+            ];
+            return $this->respond($response, 200);
+        }
     }
 }

@@ -3,7 +3,7 @@ import 'package:http/http.dart' show Client;
 
 class UserApiService {
 
-  final String baseUrl = "http://192.168.43.245/belajar-codeigniter-4/crud_ci4_flutter/ci4_restapi_flutter/public/index.php/";
+  final String baseUrl = "http://10.0.2.2/belajar-codeigniter-4/crud_ci4_flutter/ci4_restapi_flutter/public/index.php/";
   Client client = Client();
 
   Future<List<User>> getUsers() async {

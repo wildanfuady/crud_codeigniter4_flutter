@@ -14,8 +14,8 @@ class User extends ResourceController
         $this->user = new User_model;
     }
 
-	public function index()
-	{
+    public function index()
+    {
         $data = $this->user->getUser();
 
         foreach ($data as $row) { 

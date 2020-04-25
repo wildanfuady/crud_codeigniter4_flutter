@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud_ci4/model/user.dart';
 import 'package:flutter_crud_ci4/screen/user_create.dart';
+import 'package:flutter_crud_ci4/screen/user_detail.dart';
 import 'package:flutter_crud_ci4/service/user_service.dart';
 import 'package:flutter_crud_ci4/util/capitalize.dart';
 
@@ -24,7 +25,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(title: Text("Homepage"),),
       body: FutureBuilder(
         future: apiService.getUsers(),
-        builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
+        builder: (BuildContext context, snapshot) {
           if (snapshot.hasError) {
             return Center(
               child: Text(
@@ -32,6 +33,7 @@ class _HomeState extends State<Home> {
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
             List<User> users = snapshot.data;
+            print(users);
             return _buildListView(users);
           } else {
             return Center(
@@ -62,7 +64,12 @@ class _HomeState extends State<Home> {
       itemBuilder: (context, index) {
         User user = users[index];
         return ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) => DetailUser(id: user.id, key: ValueKey(user.id))) 
+            );
+          },
           leading: Icon(Icons.people),
           title: Text(user.fullName),
           subtitle: Text(capitalize(user.gender)),

@@ -59,4 +59,20 @@ class User extends ResourceController
             return $this->respond($response, 200);
         }
     }
+
+    public function getUserBy($id)
+    {
+        $data = $this->user->getUser($id);
+
+        $user = [
+            'id' => intval($data['id']),
+            'fullname' => $data['fullname'],
+            'gender' => $data['gender'],
+            'grade' => $data['grade'],
+            'phone' => $data['phone'] 
+        ];
+            
+        return $this->respond($user, 200);
+        
+    }
 }

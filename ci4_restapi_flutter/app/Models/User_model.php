@@ -26,4 +26,9 @@ class User_model extends Model {
     {
         return $this->db->table($this->table)->update($data, ['id' => $id]);
     }
+
+    public function deleteUser($id)
+    {
+        return $this->db->table($this->table)->delete(['id' => $id]);
+    }
 } 

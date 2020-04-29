@@ -102,4 +102,30 @@ class User extends ResourceController
             return $this->respond($response, 200);
         }
     }
+
+    public function delete($id = NULL)
+    {
+        // cek id
+        $cekid = $this->model->getUser($id);
+        
+        if(!empty($cekid)){
+            // delete data
+            $this->model->deleteUser($id);
+            $msg = ['message' => 'Deleted user successfully'];
+            $response = [
+                'status' => 200,
+                'error' => false,
+                'data' => $msg,
+            ];
+            return $this->respond($response, 200);
+        } else {
+            $msg = ['message' => 'Deleted user failed'];
+            $response = [
+                'status' => 500,
+                'error' => false,
+                'data' => $msg,
+            ];
+            return $this->respond($response, 500);
+        }
+    }
 }

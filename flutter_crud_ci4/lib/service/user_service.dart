@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_crud_ci4/model/user.dart';
 import 'package:http/http.dart' show Client;
 import 'dart:convert';
 
 class UserApiService {
 
-  final String baseUrl = "http://192.168.43.245/belajar-codeigniter-4/crud_ci4_flutter/ci4_restapi_flutter/public/index.php/";
+  final String baseUrl = "http://10.0.2.2/belajar-codeigniter-4/ci4_restapi_flutter/public/index.php/";
   Client client = Client();
 
   Future<List<User>> getUsers() async {
@@ -57,6 +58,18 @@ class UserApiService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<int> deleteUser({int id}) async {
+    // ganti dengan method get juga gpph
+    final response = await client.delete(
+      "$baseUrl/user/delete/$id"
+    );
+    if (response.statusCode == 200) {
+      return 1;
+    } else {
+      return 0;
     }
   }
 
